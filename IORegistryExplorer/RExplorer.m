@@ -1,20 +1,23 @@
 #import <assert.h>
 #import "RExplorer.h"
+#import <AppKit/NSSystemInfoPanel.h>
+#import <IOKit/IOKitLib.h>
 #include <IOKit/IOKitLibPrivate.h>
 
 mach_port_t gMasterPort;
 
-void callback(CFMachPortRef port, void *msg, CFIndex size, void *info);
+static void IOREMatchingCallback(
+	void *			refcon,
+	io_iterator_t	iterator );
 
 static void IOREInterestCallback(
 	void *			refcon,
-	io_service_t		service,
+	io_service_t	service,
 	natural_t		messageType,
 	void *			messageArgument );
 
-static void IOREMatchingCallback(
-	void *			refcon,
-	io_iterator_t		iterator );
+CFStringRef CFStringCreateCopy(CFAllocatorRef alloc, CFStringRef theString) __attribute__((weak_import));
+CFStringRef IOObjectCopySuperclassForClass(CFStringRef classname) __attribute__((weak_import));
 
 
 @implementation NSDictionary (Compare)
@@ -59,53 +62,60 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 - (id)init
 {
     io_registry_entry_t		entry;
-    kern_return_t		kr;
-    io_object_t		notification;
-        
+    kern_return_t			kr;
+    io_object_t				notification;
+	
     self = [super init];
     
     gMasterPort = kIOMasterPortDefault;
-    notifyPort = IONotificationPortCreate( gMasterPort );
-    port = IONotificationPortGetMachPort( notifyPort );
+    _notifyPort = IONotificationPortCreate( gMasterPort );
+    _machPort = IONotificationPortGetMachPort( _notifyPort );
+    
     assert( KERN_SUCCESS == (
-                             kr = IOServiceAddInterestNotification( notifyPort,
+                             kr = IOServiceAddInterestNotification( _notifyPort,
                                                                     IORegistryEntryFromPath( gMasterPort, kIOServicePlane ":/"),
                                                                     kIOBusyInterest, &IOREInterestCallback, self, &notification )
                              ));
-    
+	
+	// Obtain an iterator (into "notification" var) in preparation for flushing loop below:
     assert( KERN_SUCCESS == (
-                             kr = IOServiceAddMatchingNotification( notifyPort, kIOFirstMatchNotification,
+                             kr = IOServiceAddMatchingNotification( _notifyPort, kIOFirstMatchNotification,
                                                                     IOServiceMatching("IOService"),
                                                                     &IOREMatchingCallback, self, &notification )
                              ));
     
-    while ( (entry = IOIteratorNext( notification )) ) {
-        IOObjectRelease( entry );
-    }
+	// The documentation says that notifications are only armed after the given iterator has been fully traversed.
+	// It is the iterator from IOServiceAddMatchingNotification() above that must traversed/flushed:
+	while ( (entry = IOIteratorNext( notification )) ) {
+		IOObjectRelease( entry );
+	}
     
+	// Obtain an iterator (into "notification" var) in preparation for flushing loop below:
     assert( KERN_SUCCESS == (
-                             kr = IOServiceAddMatchingNotification( notifyPort, kIOTerminatedNotification,
+                             kr = IOServiceAddMatchingNotification( _notifyPort, kIOTerminatedNotification,
                                                                     IOServiceMatching("IOService"),
                                                                     &IOREMatchingCallback, self, &notification )
                              ));
     
-    while ( (entry = IOIteratorNext( notification )) ) {
-        IOObjectRelease( entry );
-    }
-        
+	// The documentation says that notifications are only armed after the given iterator has been fully traversed:
+	// It is the iterator from IOServiceAddMatchingNotification() above that must traversed/flushed:
+	while ( (entry = IOIteratorNext( notification )) ) {
+		IOObjectRelease( entry );
+	}
+	
     // create a timer to check for hardware additions/removals, etc.
     updateTimer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkForUpdate:) userInfo:nil repeats:YES] retain];
         
     // register services
     [NSApp registerServicesMenuSendTypes: [NSArray arrayWithObjects: NSStringPboardType, nil] returnTypes: [NSArray arrayWithObjects: NSStringPboardType, nil]];
-    
+    	
     return self;
 }
 
 - (void)awakeFromNib
 {
     int prefsSetting = 0;
-            
+
     [self initializeRegistryDictionaryWithPlane:kIOServicePlane];
     [splitView setVertical:NO];
     [propertiesOutlineView setDelegate:self];
@@ -117,7 +127,8 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
     [window setDelegate:self];
 
     keyColumn = [[propertiesOutlineView tableColumns] objectAtIndex:0];
-    valueColumn = [[propertiesOutlineView tableColumns] objectAtIndex:1];
+    typeColumn = [[propertiesOutlineView tableColumns] objectAtIndex:1];
+    valueColumn = [[propertiesOutlineView tableColumns] objectAtIndex:2];
     
     [window setFrameAutosaveName:@"MainWindow"];
     [window setFrameUsingName:@"MainWindow"];
@@ -133,8 +144,18 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
     [updatePrefsMatrix selectCellAtRow:prefsSetting column:0];
 
     [objectDescription setStringValue:@""];
+    [objectDescription2 setStringValue:NSLocalizedString(@"No object selected", @"")];
     [objectState setStringValue:@""];
-        
+	[objectInheritance setStringValue:@""];
+
+	_dataTypeViewTraditional = NO;
+	_dataTypeViewByteSize = 1;			[[[menuDataTypeView submenu] itemAtIndex:2] setState:NSOnState];
+	_dataTypeViewIsBigEndian = YES;		[[[menuDataTypeView submenu] itemAtIndex:7] setState:NSOnState];
+	_dataTypeViewRadix = 16;			[[[menuDataTypeView submenu] itemAtIndex:14] setState:NSOnState];
+	_dataTypeViewEncoding = NSMacOSRomanStringEncoding;
+	
+	[[menuDataTypeView submenu] setAutoenablesItems:NO];
+	
     return;
 }
 
@@ -148,19 +169,19 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
 - (NSDictionary *)dictForIterated:(io_registry_entry_t)passedEntry
 {
-    kern_return_t       status;
-    io_name_t		name;
-    io_name_t		className;
-    io_name_t           location;
-    int             	retain, busy;
-    uint64_t	    	state;
-    char *		s;
-    char		stateStr[256];
+    kern_return_t			status;
+    io_name_t				name;
+    io_name_t				className;
+    io_name_t				location;
+    int						retain, busy;
+    uint64_t				state;
+    char *					s;
+    char					stateStr[256];
 
-    io_registry_entry_t iterated;
-    io_iterator_t       regIterator;
-    NSMutableDictionary *localDict = [NSMutableDictionary dictionary];
-    NSMutableArray 	*localArray = [NSMutableArray array];
+    io_registry_entry_t		iterated;
+    io_iterator_t			regIterator;
+    NSMutableDictionary *	localDict = [NSMutableDictionary dictionary];
+    NSMutableArray 	*		localArray = [NSMutableArray array];
 
     status = IORegistryEntryGetChildIterator(passedEntry, currentPlane, &regIterator);
     assert(status == KERN_SUCCESS);
@@ -177,23 +198,23 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
         strcat(name, location);
     }
 
-    s = stateStr + sprintf(stateStr, "(");
+	stateStr [0] = '\0';  // init stateStr with terminator
+    s = stateStr;   // s is ptr to where we are while building string
     retain = IOObjectGetRetainCount(passedEntry);
-    status = IOServiceGetState(passedEntry, &state);
+    status = IOServiceGetState(passedEntry, &state);   // private API
     if (status == KERN_SUCCESS) {
-
-	status = IOServiceGetBusyState(passedEntry, &busy);
-	if (status == KERN_SUCCESS)
-	    busy = 0;
-	s += sprintf(s, "%sregistered, %smatched, %sactive, busy %d, ",
-		state & kIOServiceMatchedState    ? "" : "!",
-		state & kIOServiceRegisteredState ? "" : "!",
-		state & kIOServiceInactiveState   ? "in" : "",
-		busy );
+		status = IOServiceGetBusyState(passedEntry, &busy);
+		if (status == KERN_SUCCESS)
+			busy = 0;
+		s += sprintf(s, "%sregistered, %smatched, %sactive, busy %d, ",
+			state & kIOServiceRegisteredState		?	""		:	"!"	,
+			state & kIOServiceMatchedState			?	""		:	"!"	,
+			state & kIOServiceInactiveState			?	"in"	:	""	,
+			busy );
     }
-    s += sprintf(s, "retain count %d)", retain);
+    s += sprintf(s, "retain %d", retain);
 
-    while ( (iterated = IOIteratorNext(regIterator)) != NULL ) {
+    while ( (iterated = IOIteratorNext(regIterator)) != (io_registry_entry_t) NULL ) {
         id insideDict = [self dictForIterated:iterated];
         [localArray addObject:insideDict];
 //	IOObjectRelease(iterated);
@@ -204,10 +225,49 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
     [localDict setObject:[NSString stringWithFormat:@"%s", name] forKey:@"name"];
     [localDict setObject:[NSString stringWithFormat:@"%s", className] forKey:@"className"];
     [localDict setObject:[NSString stringWithFormat:@"%s", stateStr] forKey:@"state"];
+	[localDict setObject:[self createInheritanceStringForIORegistryClassName:[NSString stringWithFormat:@"%s", className]] forKey:@"inheritance"];
 
     [localDict setObject:[NSNumber numberWithInt:passedEntry] forKey:@"regEntry"];
 
     return [NSDictionary dictionaryWithDictionary:localDict];
+}
+
+- (NSString *)createInheritanceStringForIORegistryClassName:(NSString *)inClassName
+{
+	CFStringRef				curClassCFStr;
+	CFStringRef				oldClassCFStr;
+	NSMutableString *		outNSStr;
+	
+	// The CFStringCreateCopy() and IOObjectCopySuperclassForClass() APIs are new with 10.4.0;
+	// allow running on older osX versions if these symbols are not present ("weak reference"):
+	if ((NULL == CFStringCreateCopy) || (NULL == IOObjectCopySuperclassForClass))
+	{
+		return [NSString stringWithString:NSLocalizedString (@"Available in 10.4 or later", @"")];
+	}
+	
+	outNSStr = [NSMutableString stringWithCapacity:512];
+	[outNSStr setString:inClassName];
+	
+	curClassCFStr = CFStringCreateCopy (NULL, (CFStringRef)inClassName);
+	
+	for (;;)
+	{
+		oldClassCFStr = curClassCFStr;
+		curClassCFStr = IOObjectCopySuperclassForClass (curClassCFStr);
+		CFRelease (oldClassCFStr);
+		
+		if (NULL != curClassCFStr)
+		{
+			[outNSStr insertString:@" : " atIndex:0];
+			[outNSStr insertString:(NSString *)curClassCFStr atIndex:0];
+		}
+		else
+		{
+			break;
+		}
+	}
+	
+	return outNSStr;	// do not have to autorelease because NSMutableString has already marked it as such?
 }
 
 - (void)initializeRegistryDictionaryWithPlane:(const char *)plane
@@ -239,7 +299,7 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
     } else if ([object objectForKey:@"regEntry"]) {
 
-	CFDictionaryRef dict;
+	CFMutableDictionaryRef dict;
 	kern_return_t status;
 
         status = IORegistryEntryCreateCFProperties([[object objectForKey:@"regEntry"] intValue],
@@ -264,6 +324,12 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
     int count;
     int i;
 
+	// Ensure these fields are displayed as cleared unless we positively have something to fill in:
+    [objectDescription setStringValue:@""];
+    [objectDescription2 setStringValue:NSLocalizedString(@"No object selected", @"")];
+    [objectState setStringValue:@""];
+	[objectInheritance setStringValue:@""];
+
     autoUpdate = NO;
     if (column < 0 || row < 0)
         return;
@@ -282,14 +348,20 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
         [inspectorText setString:[newItemDict description]];
         [inspectorText display];
     }
-		
+
     [objectDescription setStringValue:[NSString stringWithFormat:@"%@ : %@",
 	    [object objectForKey:@"name"],
 	    [object objectForKey:@"className"]]];
 
+    [objectDescription2 setStringValue:[NSString stringWithFormat:@"%@",
+	    [object objectForKey:@"name"]]];
+
     [objectState setStringValue:[NSString stringWithFormat:@"%@",
 	    [object objectForKey:@"state"]]];
 
+    [objectInheritance setStringValue:[NSString stringWithFormat:@"%@",
+	    [object objectForKey:@"inheritance"]]];
+	
     // go through and create a uniqued dictionary where all the values are uniqued and all the keys are uniqued
     if ([currentSelectedItemDict count]) {
         NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
@@ -372,17 +444,164 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
 - (void)displayAboutWindow:(id)sender
 {
-        if (aboutBoxOptions == nil) {
-                aboutBoxOptions = [[NSDictionary alloc] initWithObjectsAndKeys:
+	if (aboutBoxOptions == nil) {
+			aboutBoxOptions = [[NSDictionary alloc] initWithObjectsAndKeys:
                     @"2000", @"CopyrightStartYear",
                     nil
                 ];
-            }
+	}
 
-            NSShowSystemInfoPanel(aboutBoxOptions);
+	NSShowSystemInfoPanel(aboutBoxOptions);
 
     return;
 }
+
+
+- (void)menuItemTurnOffPeerRangeThenTurnItOn:(id)inMenuItem rangeBegin:(int)inRangeBegin rangeEnd:(int)inRangeEnd
+{
+	int i;
+	for (i = inRangeBegin;   i <= inRangeEnd;   i++)
+		[[[inMenuItem menu] itemAtIndex:i] setState:NSOffState];
+	[inMenuItem setState:NSOnState];
+}
+
+
+- (void)menuItemSetEnablePeerRange:(id)inMenuItem rangeBegin:(int)inRangeBegin rangeEnd:(int)inRangeEnd enable:(BOOL)inEnable
+{
+	int i;
+	for (i = inRangeBegin;   i <= inRangeEnd;   i++)
+		[[[inMenuItem menu] itemAtIndex:i] setEnabled:inEnable];
+}
+
+
+- (void)menuDataTypeViewItemTraditional:(id)sender
+{
+	_dataTypeViewTraditional = ! _dataTypeViewTraditional;
+	if (YES == _dataTypeViewTraditional)
+	{
+		// turn on checkbox; dim nontraditional menu items
+		[sender setState:NSOnState];
+		[self menuItemSetEnablePeerRange:sender rangeBegin:2 rangeEnd:18 enable:NO];
+	}
+	else
+	{
+		// turn off checkbox; undim nontraditional menu items
+		[sender setState:NSOffState];
+		[self menuItemSetEnablePeerRange:sender rangeBegin:2 rangeEnd:18 enable:YES];
+	}
+    [propertiesOutlineView reloadData];
+}
+
+
+- (void)menuDataTypeViewItem8Bit:(id)sender
+{
+	_dataTypeViewByteSize = 1;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:2 rangeEnd:5];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItem16Bit:(id)sender
+{
+	_dataTypeViewByteSize = 2;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:2 rangeEnd:5];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItem32Bit:(id)sender
+{
+	_dataTypeViewByteSize = 4;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:2 rangeEnd:5];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItem64Bit:(id)sender
+{
+	_dataTypeViewByteSize = 8;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:2 rangeEnd:5];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemBigEndian:(id)sender
+{
+	_dataTypeViewIsBigEndian = YES;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:7 rangeEnd:8];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemLittleEndian:(id)sender
+{
+	_dataTypeViewIsBigEndian = NO;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:7 rangeEnd:8];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemUnary:(id)sender
+{
+	_dataTypeViewRadix = 1;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemBinary:(id)sender
+{
+	_dataTypeViewRadix = 2;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemOctal:(id)sender
+{
+	_dataTypeViewRadix = 8;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemDecimal:(id)sender
+{
+	_dataTypeViewRadix = 10;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemHexadecimal:(id)sender
+{
+	_dataTypeViewRadix = 16;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemASCII:(id)sender
+{
+	_dataTypeViewRadix = 0;
+	_dataTypeViewEncoding = NSASCIIStringEncoding;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemMacRoman:(id)sender
+{
+	_dataTypeViewRadix = 0;
+	_dataTypeViewEncoding = NSMacOSRomanStringEncoding;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemUTF8:(id)sender
+{
+	_dataTypeViewRadix = 0;
+	_dataTypeViewEncoding = NSUTF8StringEncoding;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
+- (void)menuDataTypeViewItemUnicode:(id)sender
+{
+	_dataTypeViewRadix = 0;
+	_dataTypeViewEncoding = NSUnicodeStringEncoding;
+	[self menuItemTurnOffPeerRangeThenTurnItOn:sender rangeBegin:10 rangeEnd:18];
+    [propertiesOutlineView reloadData];
+}
+
 
 - (void)displayPlaneWindow:(id)sender
 {
@@ -394,14 +613,13 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
 - (void)switchRootPlane:(id)sender
 {
-    [self initializeRegistryDictionaryWithPlane:[[[sender selectedCell] stringValue] cString]];
+    [self initializeRegistryDictionaryWithPlane:[[[sender selectedCell] stringValue] cString]];		// Do not make this a UTF8String because the browser might not be set correctly to the path.
     [browser loadColumnZero];
     [self changeLevel:browser];
     [currentSelectedItemDict release];
     currentSelectedItemDict = nil;
     [propertiesOutlineView reloadData];
     return;
-
 }
 
 - (void)doUpdate
@@ -416,7 +634,6 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
 - (void)reload
 {
-    // reload
     NSString *currentPath = [browser path];
     [self initializeRegistryDictionaryWithPlane:currentPlane];
     [browser loadColumnZero];
@@ -443,8 +660,6 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
         NSBeginInformationalAlertSheet(NSLocalizedString(@"The IOKit Registry has been changed.\nDo you wish to update your display or skip this update?", @""), NSLocalizedString(@"Update", @""), NSLocalizedString(@"Skip", @""), NULL, window, self, @selector(sheetDidEnd:returnCode:contextInfo:), NULL, NULL, @"");
         dialogDisplayed = YES;
     }
-    
-        
 }
 
 - (void)forceUpdate:(id)sender
@@ -486,50 +701,53 @@ static void addChildrenOfPlistToMapsRecursively(id plist, NSMapTable *_parentMap
 
 static void IOREInterestCallback(
 	void *			refcon,
-	io_service_t		service,
+	io_service_t	service,
 	natural_t		messageType,
 	void *			messageArgument )
 {
-    ((RExplorer *)refcon)->registryHasQuieted = messageArgument ? FALSE : TRUE;
+    ((RExplorer *)refcon)->_registryHasQuieted = messageArgument ? FALSE : TRUE;
 }
 
 static void IOREMatchingCallback(
 	void *			refcon,
-	io_iterator_t		iterator )
+	io_iterator_t	iterator )
 {
     io_registry_entry_t	entry;
 
+	// The documentation says that notifications are only armed after the given iterator has been fully traversed, so arm for next time:
     while ( (entry = IOIteratorNext( iterator )) ) {
-	IOObjectRelease( entry );
+		IOObjectRelease( entry );
     }
 
-    ((RExplorer *)refcon)->registryHasChanged = TRUE;
+    ((RExplorer *)refcon)->_registryHasChanged = TRUE;		// Flag it so we will update next time in checkForUpdate.
 }
 
 - (void)checkForUpdate:(NSTimer *)timer
 {
-    kern_return_t	kr;
+	// This routine gets called periodically; here we manually check if there are any messages on our port
+	// and manually cause our callback to be invoked.
+    kern_return_t			kr;
     struct {
-        mach_msg_header_t              msgHdr;
-        void *       		       content[1024];
+        mach_msg_header_t	msgHdr;
+        void *				content[1024];
     } msg;
-        
-    registryHasQuieted = FALSE;
+	
+    _registryHasQuieted = FALSE;
     do {
-        
-        kr = mach_msg(&msg.msgHdr, MACH_RCV_MSG | MACH_RCV_TIMEOUT, 0, sizeof(msg), port, 0, MACH_PORT_NULL);
-        if (kr != KERN_SUCCESS) {
-            break;
-        }
-        IODispatchCalloutFromMessage(NULL, &msg.msgHdr, notifyPort);
-        
-    } while ( TRUE );
+		kr = mach_msg(&msg.msgHdr, MACH_RCV_MSG | MACH_RCV_TIMEOUT, 0, sizeof(msg), _machPort, 0, MACH_PORT_NULL);
+		if (kr != KERN_SUCCESS) {
+			break;
+		}
+		IODispatchCalloutFromMessage(NULL, &msg.msgHdr, _notifyPort);
+	} while ( TRUE );
     
-    if (registryHasChanged && registryHasQuieted) {
-        registryHasChanged = FALSE;
+    if (_registryHasChanged && _registryHasQuieted) {
+        _registryHasChanged = FALSE;
         [self registryHasChanged];
     } else if (autoUpdate)
+	{
         [self doUpdate];
+	}
     
     return;
 }
