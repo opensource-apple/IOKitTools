@@ -7,28 +7,16 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		606FEBF708C3660400AAD0C6 /* IOKitTools */ = {
+		2D7D901F08F4AEF7003CF2E8 /* IOKitTools */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 606FEC0008C3662000AAD0C6 /* Build configuration list for PBXAggregateTarget "IOKitTools" */;
+			buildConfigurationList = 2D7D902708F4AF47003CF2E8 /* Build configuration list for PBXAggregateTarget "IOKitTools" */;
 			buildPhases = (
+				2D7D902208F4AF1E003CF2E8 /* CopyFiles */,
 			);
-			buildSettings = {
-				OPTIMIZATION_CFLAGS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = IOKitTools;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
-				606FEBFB08C3661100AAD0C6 /* PBXTargetDependency */,
-				606FEBFD08C3661400AAD0C6 /* PBXTargetDependency */,
-				606FEBFF08C3661600AAD0C6 /* PBXTargetDependency */,
+				2D7D903308F4AFE9003CF2E8 /* PBXTargetDependency */,
+				2D7D916508F4B0CB003CF2E8 /* PBXTargetDependency */,
+				2D7D916708F4B0CD003CF2E8 /* PBXTargetDependency */,
 			);
 			name = IOKitTools;
 			productName = IOKitTools;
@@ -36,214 +24,103 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		606FEB8B08C3623300AAD0C6 /* ioreg.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF603205585D4100A48F3A /* ioreg.c */; settings = {ATTRIBUTES = (); }; };
-		606FEB8D08C3623300AAD0C6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
-		606FEB8E08C3623300AAD0C6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
-		606FEB9408C3623300AAD0C6 /* ioreg.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF603805585D4100A48F3A /* ioreg.8 */; };
-		606FEB9D08C3623300AAD0C6 /* RExplorer.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605205585D4100A48F3A /* RExplorer.h */; };
-		606FEB9E08C3623300AAD0C6 /* CustomOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605405585D4100A48F3A /* CustomOutlineView.h */; };
-		606FEB9F08C3623300AAD0C6 /* RExplorer-OutlineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605605585D4100A48F3A /* RExplorer-OutlineDelegate.h */; };
-		606FEBA008C3623300AAD0C6 /* RExplorer-BrowserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605805585D4100A48F3A /* RExplorer-BrowserDelegate.h */; };
-		606FEBA108C3623300AAD0C6 /* RSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605A05585D4100A48F3A /* RSearch.h */; };
-		606FEBA208C3623300AAD0C6 /* RBool.h in Headers */ = {isa = PBXBuildFile; fileRef = 97CF605C05585D4100A48F3A /* RBool.h */; };
-		606FEBA408C3623300AAD0C6 /* IORegistryExplorer.nib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF606205585D4100A48F3A /* IORegistryExplorer.nib */; };
-		606FEBA508C3623300AAD0C6 /* IORE.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 97CF606605585D4100A48F3A /* IORE.tiff */; };
-		606FEBA608C3623300AAD0C6 /* IORE.icns in Resources */ = {isa = PBXBuildFile; fileRef = 97CF606905585D4100A48F3A /* IORE.icns */; };
-		606FEBA708C3623300AAD0C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97CF606B05585D4100A48F3A /* Localizable.strings */; };
-		606FEBA908C3623300AAD0C6 /* RExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604505585D4100A48F3A /* RExplorer.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAA08C3623300AAD0C6 /* RExplorer-OutlineDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604705585D4100A48F3A /* RExplorer-OutlineDelegate.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAB08C3623300AAD0C6 /* RExplorer-BrowserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604905585D4100A48F3A /* RExplorer-BrowserDelegate.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAC08C3623300AAD0C6 /* CustomOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604B05585D4100A48F3A /* CustomOutlineView.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAD08C3623300AAD0C6 /* RSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604D05585D4100A48F3A /* RSearch.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAE08C3623300AAD0C6 /* RBool.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF604F05585D4100A48F3A /* RBool.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBAF08C3623300AAD0C6 /* IORegistryExplorer_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF605F05585D4100A48F3A /* IORegistryExplorer_main.m */; settings = {ATTRIBUTES = (); }; };
-		606FEBB108C3623300AAD0C6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609A05585D4100A48F3A /* AppKit.framework */; };
-		606FEBB208C3623300AAD0C6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
-		606FEBB308C3623300AAD0C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A105585D4100A48F3A /* Foundation.framework */; };
-		606FEBB408C3623300AAD0C6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
-		606FEBB508C3623300AAD0C6 /* System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A805585D4100A48F3A /* System.framework */; };
-		606FEBC108C3623400AAD0C6 /* ioclasscount.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF607F05585D4100A48F3A /* ioclasscount.c */; settings = {ATTRIBUTES = (); }; };
-		606FEBC308C3623400AAD0C6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
-		606FEBC408C3623400AAD0C6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
-		606FEBCF08C3623400AAD0C6 /* ioalloccount.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF609205585D4100A48F3A /* ioalloccount.c */; settings = {ATTRIBUTES = (); }; };
-		606FEBD108C3623400AAD0C6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
-		606FEBD208C3623400AAD0C6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
-		606FEE2D08C3678100AAD0C6 /* libncurses.5.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 606FEE2C08C3678100AAD0C6 /* libncurses.5.4.dylib */; };
-		606FEE3008C367DE00AAD0C6 /* ioalloccount.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF609805585D4100A48F3A /* ioalloccount.8 */; };
-		606FEE3108C367E300AAD0C6 /* ioclasscount.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF608505585D4100A48F3A /* ioclasscount.8 */; };
+		2D7D902408F4AF3C003CF2E8 /* ioalloccount.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF609805585D4100A48F3A /* ioalloccount.8 */; };
+		2D7D902508F4AF3C003CF2E8 /* ioclasscount.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF608505585D4100A48F3A /* ioclasscount.8 */; };
+		2D7D902608F4AF3C003CF2E8 /* ioreg.8 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97CF603805585D4100A48F3A /* ioreg.8 */; };
+		2D7D903408F4AFF9003CF2E8 /* ioreg.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF603205585D4100A48F3A /* ioreg.c */; };
+		2D7D903508F4B001003CF2E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
+		2D7D903608F4B001003CF2E8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
+		2D7D903708F4B001003CF2E8 /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60D005585DC900A48F3A /* libncurses.dylib */; };
+		2D7D915508F4B063003CF2E8 /* ioclasscount.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF607F05585D4100A48F3A /* ioclasscount.c */; };
+		2D7D915608F4B076003CF2E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
+		2D7D915708F4B076003CF2E8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
+		2D7D915C08F4B07A003CF2E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF60A305585D4100A48F3A /* CoreFoundation.framework */; };
+		2D7D915D08F4B07A003CF2E8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CF609C05585D4100A48F3A /* IOKit.framework */; };
+		2D7D916308F4B0C2003CF2E8 /* ioalloccount.c in Sources */ = {isa = PBXBuildFile; fileRef = 97CF609205585D4100A48F3A /* ioalloccount.c */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		97CF601C05585D4100A48F3A /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-			};
-			name = Development;
-		};
-		97CF601D05585D4100A48F3A /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXContainerItemProxy section */
-		606FEBF808C3660F00AAD0C6 /* PBXContainerItemProxy */ = {
+		2D7D903208F4AFE9003CF2E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97CF60AF05585D4200A48F3A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 606FEB9B08C3623300AAD0C6;
-			remoteInfo = IORegistryExplorer;
+			remoteGlobalIDString = 2D7D902C08F4AFC7003CF2E8;
+			remoteInfo = ioreg;
 		};
-		606FEBFA08C3661100AAD0C6 /* PBXContainerItemProxy */ = {
+		2D7D916408F4B0CB003CF2E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97CF60AF05585D4200A48F3A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 606FEBCC08C3623400AAD0C6;
-			remoteInfo = ioalloccount;
-		};
-		606FEBFC08C3661400AAD0C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97CF60AF05585D4200A48F3A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 606FEBBE08C3623400AAD0C6;
+			remoteGlobalIDString = 2D7D914F08F4B017003CF2E8;
 			remoteInfo = ioclasscount;
 		};
-		606FEBFE08C3661600AAD0C6 /* PBXContainerItemProxy */ = {
+		2D7D916608F4B0CD003CF2E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97CF60AF05585D4200A48F3A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 606FEB8808C3623300AAD0C6;
-			remoteInfo = ioreg;
+			remoteGlobalIDString = 2D7D915808F4B07A003CF2E8;
+			remoteInfo = ioalloccount;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		606FEB9108C3623300AAD0C6 /* CopyFiles */ = {
+		2D7D902208F4AF1E003CF2E8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
 			dstPath = /usr/share/man/man8;
 			dstSubfolderSpec = 0;
 			files = (
-				606FEB9408C3623300AAD0C6 /* ioreg.8 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		606FEE2E08C3679900AAD0C6 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = /usr/share/man/man8;
-			dstSubfolderSpec = 0;
-			files = (
-				606FEE3108C367E300AAD0C6 /* ioclasscount.8 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		606FEE2F08C367BA00AAD0C6 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = /usr/share/man/man8;
-			dstSubfolderSpec = 0;
-			files = (
-				606FEE3008C367DE00AAD0C6 /* ioalloccount.8 in CopyFiles */,
+				2D7D902408F4AF3C003CF2E8 /* ioalloccount.8 in CopyFiles */,
+				2D7D902508F4AF3C003CF2E8 /* ioclasscount.8 in CopyFiles */,
+				2D7D902608F4AF3C003CF2E8 /* ioreg.8 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		606FEB9908C3623300AAD0C6 /* ioreg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioreg; sourceTree = BUILT_PRODUCTS_DIR; };
-		606FEBBC08C3623400AAD0C6 /* IORegistryExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IORegistryExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		606FEBCA08C3623400AAD0C6 /* ioclasscount */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioclasscount; sourceTree = BUILT_PRODUCTS_DIR; };
-		606FEBD808C3623400AAD0C6 /* ioalloccount */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioalloccount; sourceTree = BUILT_PRODUCTS_DIR; };
-		606FEBED08C363F500AAD0C6 /* Info-IORegistryExplorer.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Info-IORegistryExplorer.plist"; sourceTree = "<group>"; };
-		606FEE2C08C3678100AAD0C6 /* libncurses.5.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.5.4.dylib; path = /usr/lib/libncurses.5.4.dylib; sourceTree = "<absolute>"; };
+		056F26F20AFBD911006CB74E /* libMallocDebug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMallocDebug.a; path = /usr/lib/libMallocDebug.a; sourceTree = "<absolute>"; };
+		2D7D902D08F4AFC7003CF2E8 /* ioreg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioreg; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D7D915008F4B017003CF2E8 /* ioclasscount */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioclasscount; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D7D916108F4B07A003CF2E8 /* ioalloccount */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioalloccount; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CF603205585D4100A48F3A /* ioreg.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = ioreg.c; sourceTree = "<group>"; };
-		97CF603505585D4100A48F3A /* Makefile.preamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.preamble; sourceTree = "<group>"; };
-		97CF603605585D4100A48F3A /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		97CF603705585D4100A48F3A /* Makefile.postamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.postamble; sourceTree = "<group>"; };
 		97CF603805585D4100A48F3A /* ioreg.8 */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ioreg.8; sourceTree = "<group>"; };
-		97CF604505585D4100A48F3A /* RExplorer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = RExplorer.m; sourceTree = "<group>"; };
-		97CF604705585D4100A48F3A /* RExplorer-OutlineDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "RExplorer-OutlineDelegate.m"; sourceTree = "<group>"; };
-		97CF604905585D4100A48F3A /* RExplorer-BrowserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "RExplorer-BrowserDelegate.m"; sourceTree = "<group>"; };
-		97CF604B05585D4100A48F3A /* CustomOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineView.m; sourceTree = "<group>"; };
-		97CF604D05585D4100A48F3A /* RSearch.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = RSearch.m; sourceTree = "<group>"; };
-		97CF604F05585D4100A48F3A /* RBool.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = RBool.m; sourceTree = "<group>"; };
-		97CF605205585D4100A48F3A /* RExplorer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RExplorer.h; sourceTree = "<group>"; };
-		97CF605405585D4100A48F3A /* CustomOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CustomOutlineView.h; sourceTree = "<group>"; };
-		97CF605605585D4100A48F3A /* RExplorer-OutlineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RExplorer-OutlineDelegate.h"; sourceTree = "<group>"; };
-		97CF605805585D4100A48F3A /* RExplorer-BrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RExplorer-BrowserDelegate.h"; sourceTree = "<group>"; };
-		97CF605A05585D4100A48F3A /* RSearch.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RSearch.h; sourceTree = "<group>"; };
-		97CF605C05585D4100A48F3A /* RBool.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RBool.h; sourceTree = "<group>"; };
-		97CF605F05585D4100A48F3A /* IORegistryExplorer_main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IORegistryExplorer_main.m; sourceTree = "<group>"; };
-		97CF606405585D4100A48F3A /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/IORegistryExplorer.nib; sourceTree = "<group>"; };
-		97CF606605585D4100A48F3A /* IORE.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = IORE.tiff; sourceTree = "<group>"; };
-		97CF606905585D4100A48F3A /* IORE.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = IORE.icns; sourceTree = "<group>"; };
-		97CF606D05585D4100A48F3A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		97CF606F05585D4100A48F3A /* Makefile.preamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.preamble; sourceTree = "<group>"; };
-		97CF607005585D4100A48F3A /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		97CF607105585D4100A48F3A /* Makefile.postamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.postamble; sourceTree = "<group>"; };
-		97CF607205585D4100A48F3A /* CustomInfo.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist; path = CustomInfo.plist; sourceTree = "<group>"; };
 		97CF607F05585D4100A48F3A /* ioclasscount.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = ioclasscount.c; sourceTree = "<group>"; };
-		97CF608205585D4100A48F3A /* Makefile.preamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.preamble; sourceTree = "<group>"; };
-		97CF608305585D4100A48F3A /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		97CF608405585D4100A48F3A /* Makefile.postamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.postamble; sourceTree = "<group>"; };
 		97CF608505585D4100A48F3A /* ioclasscount.8 */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ioclasscount.8; sourceTree = "<group>"; };
 		97CF609205585D4100A48F3A /* ioalloccount.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = ioalloccount.c; sourceTree = "<group>"; };
-		97CF609505585D4100A48F3A /* Makefile.preamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.preamble; sourceTree = "<group>"; };
-		97CF609605585D4100A48F3A /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		97CF609705585D4100A48F3A /* Makefile.postamble */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile.postamble; sourceTree = "<group>"; };
 		97CF609805585D4100A48F3A /* ioalloccount.8 */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ioalloccount.8; sourceTree = "<group>"; };
-		97CF609A05585D4100A48F3A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		97CF609C05585D4100A48F3A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		97CF60A105585D4100A48F3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		97CF60A305585D4100A48F3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		97CF60A805585D4100A48F3A /* System.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = System.framework; path = /System/Library/Frameworks/System.framework; sourceTree = "<absolute>"; };
+		97CF60D005585DC900A48F3A /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = /usr/lib/libncurses.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		606FEB8C08C3623300AAD0C6 /* Frameworks */ = {
+		2D7D902B08F4AFC7003CF2E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEB8E08C3623300AAD0C6 /* CoreFoundation.framework in Frameworks */,
-				606FEB8D08C3623300AAD0C6 /* IOKit.framework in Frameworks */,
-				606FEE2D08C3678100AAD0C6 /* libncurses.5.4.dylib in Frameworks */,
+				2D7D903508F4B001003CF2E8 /* CoreFoundation.framework in Frameworks */,
+				2D7D903608F4B001003CF2E8 /* IOKit.framework in Frameworks */,
+				2D7D903708F4B001003CF2E8 /* libncurses.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606FEBB008C3623300AAD0C6 /* Frameworks */ = {
+		2D7D914E08F4B017003CF2E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEBB108C3623300AAD0C6 /* AppKit.framework in Frameworks */,
-				606FEBB408C3623300AAD0C6 /* CoreFoundation.framework in Frameworks */,
-				606FEBB308C3623300AAD0C6 /* Foundation.framework in Frameworks */,
-				606FEBB208C3623300AAD0C6 /* IOKit.framework in Frameworks */,
-				606FEBB508C3623300AAD0C6 /* System.framework in Frameworks */,
+				2D7D915608F4B076003CF2E8 /* CoreFoundation.framework in Frameworks */,
+				2D7D915708F4B076003CF2E8 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606FEBC208C3623400AAD0C6 /* Frameworks */ = {
+		2D7D915B08F4B07A003CF2E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEBC408C3623400AAD0C6 /* CoreFoundation.framework in Frameworks */,
-				606FEBC308C3623400AAD0C6 /* IOKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBD008C3623400AAD0C6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				606FEBD208C3623400AAD0C6 /* CoreFoundation.framework in Frameworks */,
-				606FEBD108C3623400AAD0C6 /* IOKit.framework in Frameworks */,
+				2D7D915C08F4B07A003CF2E8 /* CoreFoundation.framework in Frameworks */,
+				2D7D915D08F4B07A003CF2E8 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,10 +130,9 @@
 		97CF601A05585D4100A48F3A /* IOKitTools */ = {
 			isa = PBXGroup;
 			children = (
-				97CF603905585D4100A48F3A /* IORegistryExplorer */,
-				97CF608605585D4100A48F3A /* ioalloccount */,
-				97CF607305585D4100A48F3A /* ioclasscount */,
 				97CF602405585D4100A48F3A /* ioreg */,
+				97CF607305585D4100A48F3A /* ioclasscount */,
+				97CF608605585D4100A48F3A /* ioalloccount */,
 				97CF609905585D4100A48F3A /* External Frameworks and Libraries */,
 				97CF602B05585D4100A48F3A /* Products */,
 			);
@@ -266,8 +142,8 @@
 		97CF602405585D4100A48F3A /* ioreg */ = {
 			isa = PBXGroup;
 			children = (
-				97CF603105585D4100A48F3A /* Other Sources */,
-				97CF603405585D4100A48F3A /* Supporting Files */,
+				97CF603205585D4100A48F3A /* ioreg.c */,
+				97CF603805585D4100A48F3A /* ioreg.8 */,
 			);
 			name = ioreg;
 			path = ioreg.tproj;
@@ -276,184 +152,40 @@
 		97CF602B05585D4100A48F3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				606FEBBC08C3623400AAD0C6 /* IORegistryExplorer.app */,
-				606FEBD808C3623400AAD0C6 /* ioalloccount */,
-				606FEBCA08C3623400AAD0C6 /* ioclasscount */,
-				606FEB9908C3623300AAD0C6 /* ioreg */,
+				2D7D902D08F4AFC7003CF2E8 /* ioreg */,
+				2D7D915008F4B017003CF2E8 /* ioclasscount */,
+				2D7D916108F4B07A003CF2E8 /* ioalloccount */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		97CF603105585D4100A48F3A /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				97CF603205585D4100A48F3A /* ioreg.c */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		97CF603405585D4100A48F3A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				97CF603505585D4100A48F3A /* Makefile.preamble */,
-				97CF603605585D4100A48F3A /* Makefile */,
-				97CF603705585D4100A48F3A /* Makefile.postamble */,
-				97CF603805585D4100A48F3A /* ioreg.8 */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		97CF603905585D4100A48F3A /* IORegistryExplorer */ = {
-			isa = PBXGroup;
-			children = (
-				97CF604405585D4100A48F3A /* Classes */,
-				97CF605105585D4100A48F3A /* Headers */,
-				97CF605E05585D4100A48F3A /* Other Sources */,
-				97CF606105585D4100A48F3A /* Interfaces */,
-				97CF606505585D4100A48F3A /* Images */,
-				97CF606805585D4100A48F3A /* Resources */,
-				97CF606E05585D4100A48F3A /* Supporting Files */,
-			);
-			path = IORegistryExplorer;
-			sourceTree = "<group>";
-		};
-		97CF604405585D4100A48F3A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				97CF604505585D4100A48F3A /* RExplorer.m */,
-				97CF604705585D4100A48F3A /* RExplorer-OutlineDelegate.m */,
-				97CF604905585D4100A48F3A /* RExplorer-BrowserDelegate.m */,
-				97CF604B05585D4100A48F3A /* CustomOutlineView.m */,
-				97CF604D05585D4100A48F3A /* RSearch.m */,
-				97CF604F05585D4100A48F3A /* RBool.m */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
-		97CF605105585D4100A48F3A /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				97CF605205585D4100A48F3A /* RExplorer.h */,
-				97CF605405585D4100A48F3A /* CustomOutlineView.h */,
-				97CF605605585D4100A48F3A /* RExplorer-OutlineDelegate.h */,
-				97CF605805585D4100A48F3A /* RExplorer-BrowserDelegate.h */,
-				97CF605A05585D4100A48F3A /* RSearch.h */,
-				97CF605C05585D4100A48F3A /* RBool.h */,
-			);
-			name = Headers;
-			sourceTree = "<group>";
-		};
-		97CF605E05585D4100A48F3A /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				97CF605F05585D4100A48F3A /* IORegistryExplorer_main.m */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		97CF606105585D4100A48F3A /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				97CF606205585D4100A48F3A /* IORegistryExplorer.nib */,
-			);
-			name = Interfaces;
-			sourceTree = "<group>";
-		};
-		97CF606505585D4100A48F3A /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				97CF606605585D4100A48F3A /* IORE.tiff */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
-		97CF606805585D4100A48F3A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				606FEBED08C363F500AAD0C6 /* Info-IORegistryExplorer.plist */,
-				97CF606905585D4100A48F3A /* IORE.icns */,
-				97CF606B05585D4100A48F3A /* Localizable.strings */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		97CF606E05585D4100A48F3A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				97CF606F05585D4100A48F3A /* Makefile.preamble */,
-				97CF607005585D4100A48F3A /* Makefile */,
-				97CF607105585D4100A48F3A /* Makefile.postamble */,
-				97CF607205585D4100A48F3A /* CustomInfo.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		97CF607305585D4100A48F3A /* ioclasscount */ = {
 			isa = PBXGroup;
 			children = (
-				97CF607E05585D4100A48F3A /* Other Sources */,
-				97CF608105585D4100A48F3A /* Supporting Files */,
+				97CF607F05585D4100A48F3A /* ioclasscount.c */,
+				97CF608505585D4100A48F3A /* ioclasscount.8 */,
 			);
 			name = ioclasscount;
 			path = ioclasscount.tproj;
 			sourceTree = "<group>";
 		};
-		97CF607E05585D4100A48F3A /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				97CF607F05585D4100A48F3A /* ioclasscount.c */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		97CF608105585D4100A48F3A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				97CF608205585D4100A48F3A /* Makefile.preamble */,
-				97CF608305585D4100A48F3A /* Makefile */,
-				97CF608405585D4100A48F3A /* Makefile.postamble */,
-				97CF608505585D4100A48F3A /* ioclasscount.8 */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		97CF608605585D4100A48F3A /* ioalloccount */ = {
 			isa = PBXGroup;
 			children = (
-				97CF609105585D4100A48F3A /* Other Sources */,
-				97CF609405585D4100A48F3A /* Supporting Files */,
+				97CF609205585D4100A48F3A /* ioalloccount.c */,
+				97CF609805585D4100A48F3A /* ioalloccount.8 */,
 			);
 			name = ioalloccount;
 			path = ioalloccount.tproj;
 			sourceTree = "<group>";
 		};
-		97CF609105585D4100A48F3A /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				97CF609205585D4100A48F3A /* ioalloccount.c */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		97CF609405585D4100A48F3A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				97CF609505585D4100A48F3A /* Makefile.preamble */,
-				97CF609605585D4100A48F3A /* Makefile */,
-				97CF609705585D4100A48F3A /* Makefile.postamble */,
-				97CF609805585D4100A48F3A /* ioalloccount.8 */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		97CF609905585D4100A48F3A /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				606FEE2C08C3678100AAD0C6 /* libncurses.5.4.dylib */,
-				97CF609A05585D4100A48F3A /* AppKit.framework */,
-				97CF60A305585D4100A48F3A /* CoreFoundation.framework */,
-				97CF60A105585D4100A48F3A /* Foundation.framework */,
+				056F26F20AFBD911006CB74E /* libMallocDebug.a */,
+				97CF60D005585DC900A48F3A /* libncurses.dylib */,
 				97CF609C05585D4100A48F3A /* IOKit.framework */,
+				97CF60A305585D4100A48F3A /* CoreFoundation.framework */,
 				97CF60A805585D4100A48F3A /* System.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -461,191 +193,53 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		606FEB8908C3623300AAD0C6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEB9C08C3623300AAD0C6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				606FEB9D08C3623300AAD0C6 /* RExplorer.h in Headers */,
-				606FEB9E08C3623300AAD0C6 /* CustomOutlineView.h in Headers */,
-				606FEB9F08C3623300AAD0C6 /* RExplorer-OutlineDelegate.h in Headers */,
-				606FEBA008C3623300AAD0C6 /* RExplorer-BrowserDelegate.h in Headers */,
-				606FEBA108C3623300AAD0C6 /* RSearch.h in Headers */,
-				606FEBA208C3623300AAD0C6 /* RBool.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBBF08C3623400AAD0C6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBCD08C3623400AAD0C6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		606FEB8808C3623300AAD0C6 /* ioreg */ = {
+		2D7D902C08F4AFC7003CF2E8 /* ioreg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 606FEB9508C3623300AAD0C6 /* Build configuration list for PBXNativeTarget "ioreg" */;
+			buildConfigurationList = 2D7D902F08F4AFE5003CF2E8 /* Build configuration list for PBXNativeTarget "ioreg" */;
 			buildPhases = (
-				606FEB8908C3623300AAD0C6 /* Headers */,
-				606FEB8A08C3623300AAD0C6 /* Sources */,
-				606FEB8C08C3623300AAD0C6 /* Frameworks */,
-				606FEB9008C3623300AAD0C6 /* Rez */,
-				606FEB9108C3623300AAD0C6 /* CopyFiles */,
+				2D7D902A08F4AFC7003CF2E8 /* Sources */,
+				2D7D902B08F4AFC7003CF2E8 /* Frameworks */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioreg;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 			);
 			name = ioreg;
-			productInstallPath = /usr/sbin;
-			productName = "ioreg (Tool)";
-			productReference = 606FEB9908C3623300AAD0C6 /* ioreg */;
+			productName = ioreg;
+			productReference = 2D7D902D08F4AFC7003CF2E8 /* ioreg */;
 			productType = "com.apple.product-type.tool";
 		};
-		606FEB9B08C3623300AAD0C6 /* IORegistryExplorer */ = {
+		2D7D914F08F4B017003CF2E8 /* ioclasscount */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 606FEBB708C3623300AAD0C6 /* Build configuration list for PBXNativeTarget "IORegistryExplorer" */;
+			buildConfigurationList = 2D7D915208F4B04A003CF2E8 /* Build configuration list for PBXNativeTarget "ioclasscount" */;
 			buildPhases = (
-				606FEB9C08C3623300AAD0C6 /* Headers */,
-				606FEBA308C3623300AAD0C6 /* Resources */,
-				606FEBA808C3623300AAD0C6 /* Sources */,
-				606FEBB008C3623300AAD0C6 /* Frameworks */,
-				606FEBB608C3623300AAD0C6 /* Rez */,
+				2D7D914D08F4B017003CF2E8 /* Sources */,
+				2D7D914E08F4B017003CF2E8 /* Frameworks */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(SYSTEM_DEVELOPER_APPS_DIR)/Utilities";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = IORegistryExplorer;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			dependencies = (
-			);
-			name = IORegistryExplorer;
-			productInstallPath = "$(SYSTEM_DEVELOPER_APPS_DIR)/Utilities";
-			productName = "IORegistryExplorer (Application)";
-			productReference = 606FEBBC08C3623400AAD0C6 /* IORegistryExplorer.app */;
-			productType = "com.apple.product-type.application";
-		};
-		606FEBBE08C3623400AAD0C6 /* ioclasscount */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 606FEBC608C3623400AAD0C6 /* Build configuration list for PBXNativeTarget "ioclasscount" */;
-			buildPhases = (
-				606FEBBF08C3623400AAD0C6 /* Headers */,
-				606FEBC008C3623400AAD0C6 /* Sources */,
-				606FEBC208C3623400AAD0C6 /* Frameworks */,
-				606FEBC508C3623400AAD0C6 /* Rez */,
-				606FEE2E08C3679900AAD0C6 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioclasscount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 			);
 			name = ioclasscount;
-			productInstallPath = /usr/sbin;
-			productName = "ioclasscount (Tool)";
-			productReference = 606FEBCA08C3623400AAD0C6 /* ioclasscount */;
+			productName = ioclasscount;
+			productReference = 2D7D915008F4B017003CF2E8 /* ioclasscount */;
 			productType = "com.apple.product-type.tool";
 		};
-		606FEBCC08C3623400AAD0C6 /* ioalloccount */ = {
+		2D7D915808F4B07A003CF2E8 /* ioalloccount */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 606FEBD408C3623400AAD0C6 /* Build configuration list for PBXNativeTarget "ioalloccount" */;
+			buildConfigurationList = 2D7D915E08F4B07A003CF2E8 /* Build configuration list for PBXNativeTarget "ioalloccount" */;
 			buildPhases = (
-				606FEBCD08C3623400AAD0C6 /* Headers */,
-				606FEBCE08C3623400AAD0C6 /* Sources */,
-				606FEBD008C3623400AAD0C6 /* Frameworks */,
-				606FEBD308C3623400AAD0C6 /* Rez */,
-				606FEE2F08C367BA00AAD0C6 /* CopyFiles */,
+				2D7D915908F4B07A003CF2E8 /* Sources */,
+				2D7D915B08F4B07A003CF2E8 /* Frameworks */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioalloccount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 			);
 			name = ioalloccount;
-			productInstallPath = /usr/sbin;
-			productName = "ioalloccount (Tool)";
-			productReference = 606FEBD808C3623400AAD0C6 /* ioalloccount */;
+			productName = ioclasscount;
+			productReference = 2D7D916108F4B07A003CF2E8 /* ioalloccount */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -653,564 +247,224 @@
 /* Begin PBXProject section */
 		97CF60AF05585D4200A48F3A /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 6041FB3908C3611200205A98 /* Build configuration list for PBXProject "IOKitTools" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				97CF601C05585D4100A48F3A /* Development */,
-				97CF601D05585D4100A48F3A /* Deployment */,
-			);
+			buildConfigurationList = 2D7D900708F4AE49003CF2E8 /* Build configuration list for PBXProject "IOKitTools" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 97CF601A05585D4100A48F3A /* IOKitTools */;
 			productRefGroup = 97CF602B05585D4100A48F3A /* Products */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
-				606FEBF708C3660400AAD0C6 /* IOKitTools */,
-				606FEBCC08C3623400AAD0C6 /* ioalloccount */,
-				606FEBBE08C3623400AAD0C6 /* ioclasscount */,
-				606FEB8808C3623300AAD0C6 /* ioreg */,
+				2D7D901F08F4AEF7003CF2E8 /* IOKitTools */,
+				2D7D902C08F4AFC7003CF2E8 /* ioreg */,
+				2D7D914F08F4B017003CF2E8 /* ioclasscount */,
+				2D7D915808F4B07A003CF2E8 /* ioalloccount */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		606FEBA308C3623300AAD0C6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				606FEBA408C3623300AAD0C6 /* IORegistryExplorer.nib in Resources */,
-				606FEBA508C3623300AAD0C6 /* IORE.tiff in Resources */,
-				606FEBA608C3623300AAD0C6 /* IORE.icns in Resources */,
-				606FEBA708C3623300AAD0C6 /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		606FEB9008C3623300AAD0C6 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBB608C3623300AAD0C6 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBC508C3623400AAD0C6 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBD308C3623400AAD0C6 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		606FEB8A08C3623300AAD0C6 /* Sources */ = {
+		2D7D902A08F4AFC7003CF2E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEB8B08C3623300AAD0C6 /* ioreg.c in Sources */,
+				2D7D903408F4AFF9003CF2E8 /* ioreg.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606FEBA808C3623300AAD0C6 /* Sources */ = {
+		2D7D914D08F4B017003CF2E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEBA908C3623300AAD0C6 /* RExplorer.m in Sources */,
-				606FEBAA08C3623300AAD0C6 /* RExplorer-OutlineDelegate.m in Sources */,
-				606FEBAB08C3623300AAD0C6 /* RExplorer-BrowserDelegate.m in Sources */,
-				606FEBAC08C3623300AAD0C6 /* CustomOutlineView.m in Sources */,
-				606FEBAD08C3623300AAD0C6 /* RSearch.m in Sources */,
-				606FEBAE08C3623300AAD0C6 /* RBool.m in Sources */,
-				606FEBAF08C3623300AAD0C6 /* IORegistryExplorer_main.m in Sources */,
+				2D7D915508F4B063003CF2E8 /* ioclasscount.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606FEBC008C3623400AAD0C6 /* Sources */ = {
+		2D7D915908F4B07A003CF2E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606FEBC108C3623400AAD0C6 /* ioclasscount.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606FEBCE08C3623400AAD0C6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				606FEBCF08C3623400AAD0C6 /* ioalloccount.c in Sources */,
+				2D7D916308F4B0C2003CF2E8 /* ioalloccount.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		606FEBF908C3660F00AAD0C6 /* PBXTargetDependency */ = {
+		2D7D903308F4AFE9003CF2E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 606FEB9B08C3623300AAD0C6 /* IORegistryExplorer */;
-			targetProxy = 606FEBF808C3660F00AAD0C6 /* PBXContainerItemProxy */;
+			target = 2D7D902C08F4AFC7003CF2E8 /* ioreg */;
+			targetProxy = 2D7D903208F4AFE9003CF2E8 /* PBXContainerItemProxy */;
 		};
-		606FEBFB08C3661100AAD0C6 /* PBXTargetDependency */ = {
+		2D7D916508F4B0CB003CF2E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 606FEBCC08C3623400AAD0C6 /* ioalloccount */;
-			targetProxy = 606FEBFA08C3661100AAD0C6 /* PBXContainerItemProxy */;
+			target = 2D7D914F08F4B017003CF2E8 /* ioclasscount */;
+			targetProxy = 2D7D916408F4B0CB003CF2E8 /* PBXContainerItemProxy */;
 		};
-		606FEBFD08C3661400AAD0C6 /* PBXTargetDependency */ = {
+		2D7D916708F4B0CD003CF2E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 606FEBBE08C3623400AAD0C6 /* ioclasscount */;
-			targetProxy = 606FEBFC08C3661400AAD0C6 /* PBXContainerItemProxy */;
-		};
-		606FEBFF08C3661600AAD0C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 606FEB8808C3623300AAD0C6 /* ioreg */;
-			targetProxy = 606FEBFE08C3661600AAD0C6 /* PBXContainerItemProxy */;
+			target = 2D7D915808F4B07A003CF2E8 /* ioalloccount */;
+			targetProxy = 2D7D916608F4B0CD003CF2E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		97CF606205585D4100A48F3A /* IORegistryExplorer.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97CF606405585D4100A48F3A /* English */,
-			);
-			name = IORegistryExplorer.nib;
-			sourceTree = "<group>";
-		};
-		97CF606B05585D4100A48F3A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97CF606D05585D4100A48F3A /* English */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		6041FB3A08C3611200205A98 /* Development */ = {
+		2D7D900808F4AE49003CF2E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_GROUP = wheel;
+				INSTALL_OWNER = root;
+				INSTALL_PATH = /usr/sbin;
 			};
 			name = Development;
 		};
-		6041FB3B08C3611200205A98 /* Deployment */ = {
+		2D7D900908F4AE49003CF2E8 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INSTALL_GROUP = wheel;
+				INSTALL_OWNER = root;
+				INSTALL_PATH = /usr/sbin;
 			};
 			name = Deployment;
 		};
-		6041FB3C08C3611200205A98 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
-		};
-		606FEB9608C3623300AAD0C6 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioreg;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Development;
-		};
-		606FEB9708C3623300AAD0C6 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioreg;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Deployment;
-		};
-		606FEB9808C3623300AAD0C6 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioreg;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
-		606FEBB808C3623300AAD0C6 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "IORegistryExplorer/Info-IORegistryExplorer.plist";
-				INSTALL_PATH = "$(SYSTEM_DEVELOPER_APPS_DIR)/Utilities";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/PrivateHeaders";
-				PRODUCT_NAME = IORegistryExplorer;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Development;
-		};
-		606FEBB908C3623300AAD0C6 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "IORegistryExplorer/Info-IORegistryExplorer.plist";
-				INSTALL_PATH = "$(SYSTEM_DEVELOPER_APPS_DIR)/Utilities";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/PrivateHeaders";
-				PRODUCT_NAME = IORegistryExplorer;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Deployment;
-		};
-		606FEBBA08C3623300AAD0C6 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "IORegistryExplorer/Info-IORegistryExplorer.plist";
-				INSTALL_PATH = "$(SYSTEM_DEVELOPER_APPS_DIR)/Utilities";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/PrivateHeaders";
-				PRODUCT_NAME = IORegistryExplorer;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		606FEBC708C3623400AAD0C6 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioclasscount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Development;
-		};
-		606FEBC808C3623400AAD0C6 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioclasscount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Deployment;
-		};
-		606FEBC908C3623400AAD0C6 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioclasscount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
-		606FEBD508C3623400AAD0C6 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioalloccount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Development;
-		};
-		606FEBD608C3623400AAD0C6 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioalloccount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Deployment;
-		};
-		606FEBD708C3623400AAD0C6 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = /usr/sbin;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-twolevel_namespace";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ioalloccount;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
-		606FEC0108C3662000AAD0C6 /* Development */ = {
+		2D7D902808F4AF47003CF2E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = IOKitTools;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 			};
 			name = Development;
 		};
-		606FEC0208C3662000AAD0C6 /* Deployment */ = {
+		2D7D902908F4AF47003CF2E8 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = IOKitTools;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 			};
 			name = Deployment;
 		};
-		606FEC0308C3662000AAD0C6 /* Default */ = {
+		2D7D903008F4AFE5003CF2E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = IOKitTools;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioreg;
+				SKIP_INSTALL = NO;
 			};
-			name = Default;
+			name = Development;
+		};
+		2D7D903108F4AFE5003CF2E8 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioreg;
+				SKIP_INSTALL = NO;
+			};
+			name = Deployment;
+		};
+		2D7D915308F4B04A003CF2E8 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioclasscount;
+				SKIP_INSTALL = NO;
+			};
+			name = Development;
+		};
+		2D7D915408F4B04A003CF2E8 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioclasscount;
+				SKIP_INSTALL = NO;
+			};
+			name = Deployment;
+		};
+		2D7D915F08F4B07A003CF2E8 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioalloccount;
+				SKIP_INSTALL = NO;
+			};
+			name = Development;
+		};
+		2D7D916008F4B07A003CF2E8 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				PRODUCT_NAME = ioalloccount;
+				SKIP_INSTALL = NO;
+			};
+			name = Deployment;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6041FB3908C3611200205A98 /* Build configuration list for PBXProject "IOKitTools" */ = {
+		2D7D900708F4AE49003CF2E8 /* Build configuration list for PBXProject "IOKitTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6041FB3A08C3611200205A98 /* Development */,
-				6041FB3B08C3611200205A98 /* Deployment */,
-				6041FB3C08C3611200205A98 /* Default */,
+				2D7D900808F4AE49003CF2E8 /* Development */,
+				2D7D900908F4AE49003CF2E8 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
-		606FEB9508C3623300AAD0C6 /* Build configuration list for PBXNativeTarget "ioreg" */ = {
+		2D7D902708F4AF47003CF2E8 /* Build configuration list for PBXAggregateTarget "IOKitTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				606FEB9608C3623300AAD0C6 /* Development */,
-				606FEB9708C3623300AAD0C6 /* Deployment */,
-				606FEB9808C3623300AAD0C6 /* Default */,
+				2D7D902808F4AF47003CF2E8 /* Development */,
+				2D7D902908F4AF47003CF2E8 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
-		606FEBB708C3623300AAD0C6 /* Build configuration list for PBXNativeTarget "IORegistryExplorer" */ = {
+		2D7D902F08F4AFE5003CF2E8 /* Build configuration list for PBXNativeTarget "ioreg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				606FEBB808C3623300AAD0C6 /* Development */,
-				606FEBB908C3623300AAD0C6 /* Deployment */,
-				606FEBBA08C3623300AAD0C6 /* Default */,
+				2D7D903008F4AFE5003CF2E8 /* Development */,
+				2D7D903108F4AFE5003CF2E8 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
-		606FEBC608C3623400AAD0C6 /* Build configuration list for PBXNativeTarget "ioclasscount" */ = {
+		2D7D915208F4B04A003CF2E8 /* Build configuration list for PBXNativeTarget "ioclasscount" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				606FEBC708C3623400AAD0C6 /* Development */,
-				606FEBC808C3623400AAD0C6 /* Deployment */,
-				606FEBC908C3623400AAD0C6 /* Default */,
+				2D7D915308F4B04A003CF2E8 /* Development */,
+				2D7D915408F4B04A003CF2E8 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
-		606FEBD408C3623400AAD0C6 /* Build configuration list for PBXNativeTarget "ioalloccount" */ = {
+		2D7D915E08F4B07A003CF2E8 /* Build configuration list for PBXNativeTarget "ioalloccount" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				606FEBD508C3623400AAD0C6 /* Development */,
-				606FEBD608C3623400AAD0C6 /* Deployment */,
-				606FEBD708C3623400AAD0C6 /* Default */,
+				2D7D915F08F4B07A003CF2E8 /* Development */,
+				2D7D916008F4B07A003CF2E8 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		606FEC0008C3662000AAD0C6 /* Build configuration list for PBXAggregateTarget "IOKitTools" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				606FEC0108C3662000AAD0C6 /* Development */,
-				606FEC0208C3662000AAD0C6 /* Deployment */,
-				606FEC0308C3662000AAD0C6 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};
